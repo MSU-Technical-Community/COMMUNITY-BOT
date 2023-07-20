@@ -1,6 +1,6 @@
-from peewee import (BooleanField, DateTimeField, ForeignKeyField,
-                    FloatField, IntegerField, Model, PrimaryKeyField,
-                    SqliteDatabase, TextField, TimeField)
+from peewee import (BooleanField, DateTimeField, FloatField, ForeignKeyField,
+                    IntegerField, Model, PrimaryKeyField, SqliteDatabase,
+                    TextField, TimeField)
 
 from config import db_name
 
