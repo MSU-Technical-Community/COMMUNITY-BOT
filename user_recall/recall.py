@@ -18,7 +18,7 @@ logger = logging.getLogger()
 try:
     User.create_table()
     Link.create_table()
-    logger.warning("Table of users created successfully!")
+    logger.info("Table of users created successfully!")
 except peewee.OperationalError:
     logger.warning("Table of users already exists")
 
@@ -71,7 +71,7 @@ def add_event(name,
                                                    hour,
                                                    minute))
     except ValueError:
-        logger.warning("Entered time is uncorrect")
+        logger.critical("Entered time is uncorrect")
         return
     new_event.save()
     new_link = Link.create(user_id=user.id, event_id=new_event.id)
@@ -87,7 +87,10 @@ def add_event(name,
 
 
 """
-
+today_task() recieves task and send message with
+name, place and description after difference
+between time of perfomance and time now in
+seconds
 """
 
 
@@ -103,6 +106,13 @@ def today_tasks(task):
     return
 
 
+"""
+near_events() recieves list of tasks and
+and open thread with roday_task() and task
+from task_list and join it
+"""
+
+
 def near_events(task_list):
     threads = []
     for task in task_list:
@@ -115,6 +125,14 @@ def near_events(task_list):
         thread.start()
     for th in threads:
         th.join()
+
+
+"""
+get_event() recieves name (or username from telegram).
+It sends message with event today, on this week and
+after week.
+If event must be oerformed today, it transmits in near_events().
+"""
 
 
 def get_event(name):
@@ -152,6 +170,12 @@ def get_event(name):
               Место проведения: {task.place}
               Описание: {task.description}""")
     near_events(today_list)
+
+
+"""
+drop_event() recieves name (or username from telegram) and
+name of event and delete event
+"""
 
 
 def drop_event(name, event_name):
