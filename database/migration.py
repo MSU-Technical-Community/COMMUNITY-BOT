@@ -1,7 +1,11 @@
+import os
+
+from dotenv import load_dotenv
 from peewee import SqliteDatabase
 from playhouse.migrate import SqliteMigrator
 
-from config import db_name
+load_dotenv()
+db_name = os.getenv("db_name")
 
 db = SqliteDatabase(db_name)
 migrator = SqliteMigrator(db)
