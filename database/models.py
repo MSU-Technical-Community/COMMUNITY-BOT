@@ -1,10 +1,9 @@
 import os
 
+from dotenv import load_dotenv
 from peewee import (BooleanField, DateTimeField, FloatField, ForeignKeyField,
                     IntegerField, Model, PrimaryKeyField, SqliteDatabase,
                     TextField, TimeField)
-
-from dotenv import load_dotenv
 
 load_dotenv()
 db_name = os.getenv("db_name")
