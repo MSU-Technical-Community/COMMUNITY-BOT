@@ -24,12 +24,10 @@ class Base(Model):
 class User(Base):
     """
     User is class for user:
-    where username is username from telegram
     group is group of student in university(For example: ПМ_201)
     schedule is flag with sending of schedule
     verification is flag that show is verified user or not
     """
-    telegram_username = TextField()
     group = TextField()
     schedule = BooleanField(default=True)
     verification = BooleanField(default=False)
